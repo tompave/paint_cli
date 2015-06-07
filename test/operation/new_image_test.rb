@@ -28,4 +28,17 @@ class NewImageTest < Minitest::Test
     assert_equal expected.render, @operation.process.render
   end
 
+
+  def test_invalid_arguments
+    @op = PaintCli::Operation::NewImage.new([251, 100])
+    error_msg = "The requested size is invalid. Width and Height should be between 1 and 250\n"
+    out = false
+
+    assert_output error_msg do
+      out = @op.process
+    end
+
+    assert_nil out
+  end
+
 end
