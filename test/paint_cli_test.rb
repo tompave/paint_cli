@@ -5,4 +5,9 @@ class PaintCliTest < Minitest::Test
     refute_nil ::PaintCli::VERSION
   end
 
+
+  def test_responds_to_run
+    assert_respond_to PaintCli, :run
+  end
+
 end

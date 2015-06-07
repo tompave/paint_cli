@@ -5,5 +5,10 @@ require "paint_cli/repl"
 require "paint_cli/operation"
 
 module PaintCli
-  # Your code goes here...
+  class << self
+    def run
+      repl = Repl.new
+      repl.start
+    end
+  end
 end
