@@ -8,20 +8,14 @@ module PaintCli::Operation
 
     attr_reader :args
 
-    def initialize(bitmap, args_array=nil)
-      @input_bmp = bitmap
+    def initialize(args_array=nil)
       @args = args_array
     end
 
     # return an output bitmap
     #
-    def execute
+    def process(input_bmp)
       input_bmp
     end
-
-
-    private
-
-    attr_reader :input_bmp
   end
 end
