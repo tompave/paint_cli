@@ -4,7 +4,7 @@ class BitmapTest < Minitest::Test
 
   def setup
     super
-    @bmp = PaintCli::Bitmap.new(10, 10)
+    @bmp = PaintCli::Bitmap.new(10, 7)
   end
 
 
@@ -43,7 +43,7 @@ class BitmapTest < Minitest::Test
 
   def test_a_new_bitmap_is_completely_white
     white_line = "O" * 10
-    white_grid = 10.times.map { white_line }.join("\n")
+    white_grid = 7.times.map { white_line }.join("\n")
     assert_equal white_grid, @bmp.render
   end
 
