@@ -1,6 +1,7 @@
 require 'minitest_helper'
 
 class BinTest < Minitest::Test
+  include IoTestHelpers
 
   # if the test can't find the bin, we want it to fail here
   #
@@ -57,24 +58,6 @@ JJJJJ
   def bin_file
     File.expand_path("../../bin/paint_cli", __FILE__)
   end
-
-
-  # To simulate a sequence of commands issued to STDIN,
-  # used to test REPL input.
-  #
-  def simulate_repl_input(commands, &block)
-    io = StringIO.new
-    commands.each { |cmd| io.puts(cmd) }
-    io.rewind
-
-    actual_stdin = $stdin
-    $stdin = io
-
-    yield
-  ensure
-    $stdin = actual_stdin
-  end
-
 
 
   def output_for_commands(commands)
