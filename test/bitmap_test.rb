@@ -2,9 +2,14 @@ require 'minitest_helper'
 
 class BitmapTest < Minitest::Test
 
+  def setup
+    super
+    @bmp = PaintCli::Bitmap.new(10, 10)
+  end
+
+
   def test_initialize
-    bmp = PaintCli::Bitmap.new(200, 250)
-    assert_instance_of PaintCli::Bitmap, bmp
+    assert_instance_of PaintCli::Bitmap, @bmp
   end
 
 
@@ -23,10 +28,23 @@ class BitmapTest < Minitest::Test
   end
 
 
-  def assert_dimensions
+  def test_dimensions_are_saved
     bmp = PaintCli::Bitmap.new(200, 250)
     assert_equal 200, bmp.width
     assert_equal 250, bmp.height
+  end
+
+
+  def test_it_renders
+    assert_respond_to @bmp, :render
+    assert_instance_of String, @bmp.render
+  end
+
+
+  def test_a_new_bitmap_is_completely_white
+    white_line = "O" * 10
+    white_grid = 10.times.map { white_line }.join("\n")
+    assert_equal white_grid, @bmp.render
   end
 
 end
