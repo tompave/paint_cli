@@ -1,12 +1,12 @@
 require 'minitest_helper'
 
-class OperationTest < Minitest::Test
+class OperationBaseTest < Minitest::Test
 
   def setup
     super
     @input = PaintCli::Bitmap.new(5, 3)
     @arguments = [1, 2, 3]
-    @operation = PaintCli::Operation.new(@input, @arguments)
+    @operation = PaintCli::Operation::Base.new(@input, @arguments)
   end
 
 
