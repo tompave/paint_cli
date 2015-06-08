@@ -2,6 +2,7 @@ module PaintCli
   class Repl
 
     def start
+      @bitmap = nil
       enter_loop
     end
 
@@ -19,7 +20,7 @@ module PaintCli
         if cmd == "X"
           break
         else
-          parser.parse cmd
+          run_command(cmd)
         end
       end
     end
@@ -27,6 +28,12 @@ module PaintCli
 
     def next_command
       gets.chomp
+    end
+
+
+    def run_command(cmd)
+      operation = parser.parse(cmd)
+      @bitmap = operation.process(@bitmap)
     end
 
   end

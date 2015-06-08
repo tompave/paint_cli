@@ -18,7 +18,7 @@ class ReplTest < Minitest::Test
   def test_it_parses_the_commands
     commands = %w(foo bar baz)
     commands.each do |cmd|
-      @parser_mock.expect(:parse, nil, [cmd])
+      @parser_mock.expect(:parse, PaintCli::Operation::Base.new, [cmd])
     end
 
     commands << "X"
