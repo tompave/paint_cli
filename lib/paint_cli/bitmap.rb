@@ -20,6 +20,11 @@ module PaintCli
     end
 
 
+    def change_pixel(x, y, color)
+      matrix[x-1][y-1] = color
+    end
+
+
     private
 
     attr_reader :matrix

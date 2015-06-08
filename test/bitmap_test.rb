@@ -47,4 +47,23 @@ class BitmapTest < Minitest::Test
     assert_equal white_grid, @bmp.render
   end
 
+
+  def test_change_pixel
+    assert_respond_to @bmp, :change_pixel
+    
+    @bmp = PaintCli::Bitmap.new(4, 4)
+    old = @bmp.render
+    @bmp.change_pixel(1, 1, "C")
+    refute_equal @bmp.render, old
+
+    expected = <<-EOS
+COOO
+OOOO
+OOOO
+OOOO
+    EOS
+
+    assert_equal expected.strip, @bmp.render
+  end
+
 end
