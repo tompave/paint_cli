@@ -32,6 +32,11 @@ module PaintCli
     end
 
 
+    def in_frame?(x, y)
+      w_range === x && h_range === y
+    end
+
+
     private
 
     attr_reader :matrix
@@ -54,10 +59,20 @@ module PaintCli
 
 
     def sanitize(x, y)
-      if !(((1..width) === x) && ((1..height) === y))
+      unless in_frame?(x, y)
         raise CoordinateError, "coordinates x: #{x} and y: #{y} are out of frame (#{width}x#{height})"
       end
       [x - 1, y - 1]
+    end
+
+
+    def w_range
+      @w_range ||= 1..width
+    end
+
+
+    def h_range
+      @h_range ||= 1..height
     end
 
 

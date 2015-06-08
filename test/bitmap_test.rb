@@ -104,4 +104,18 @@ OOOO
     end
   end
 
+
+
+  def test_in_frame
+    bmp = PaintCli::Bitmap.new(7, 7)
+
+    assert bmp.in_frame? 2, 3
+    assert bmp.in_frame? 1, 1
+    assert bmp.in_frame? 7, 7
+
+    refute bmp.in_frame? -1, 3
+    refute bmp.in_frame? 7, 8
+    refute bmp.in_frame? 11, 9
+  end
+
 end
