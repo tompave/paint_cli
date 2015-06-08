@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class BinTest < Minitest::Test
+class EndToEndTest < Minitest::Test
   include IoTestHelpers
 
   # if the test can't find the bin, we want it to fail here
@@ -22,7 +22,8 @@ OOOOO
     commands = [
       "I 5 6",
       "L 2 3 A",
-      "S"
+      "S",
+      "X"
     ]
 
     assert_match /#{expected}/, output_for_commands(commands)
@@ -45,7 +46,8 @@ JJJJJ
       "F 3 3 J",
       "V 2 3 4 W",
       "H 3 4 2 Z",
-      "S"
+      "S",
+      "X"
     ]
 
     assert_match /#{expected}/, output_for_commands(commands)
@@ -61,9 +63,9 @@ JJJJJ
 
 
   def output_for_commands(commands)
-    out, err = capture_subprocess_io do
+    out, err = capture_io do
       simulate_repl_input(commands) do
-        system(bin_file)
+        PaintCli.run
       end
     end
     out
