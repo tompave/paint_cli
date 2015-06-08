@@ -81,4 +81,27 @@ OOOO
     end
   end
 
+
+  def test_color_for_pixel
+    @bmp = PaintCli::Bitmap.new(4, 4)
+    @bmp.change_pixel(1, 1, "C")
+
+    assert_equal "C", @bmp.color_for_pixel(1, 1)
+    assert_equal "O", @bmp.color_for_pixel(2, 1)
+  end
+
+
+  def test_color_for_pixel_coords_must_be_in_range
+    @bmp = PaintCli::Bitmap.new(4, 4)
+    @bmp.color_for_pixel(1, 1)
+
+    assert_raises(PaintCli::Bitmap::CoordinateError) do
+      @bmp.color_for_pixel(1, 5)
+    end
+
+    assert_raises(PaintCli::Bitmap::CoordinateError) do
+      @bmp.color_for_pixel(0, 2)
+    end
+  end
+
 end

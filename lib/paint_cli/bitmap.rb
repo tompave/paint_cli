@@ -26,6 +26,12 @@ module PaintCli
     end
 
 
+    def color_for_pixel(x, y)
+      x_coord, y_coord = sanitize(x, y)
+      matrix[x_coord][y_coord]
+    end
+
+
     private
 
     attr_reader :matrix
