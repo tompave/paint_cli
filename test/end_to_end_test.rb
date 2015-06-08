@@ -54,6 +54,22 @@ JJJJJ
   end
 
 
+  def test_repl_simple
+    expected = <<-EOS
+OOOO
+OOOO
+OOOO
+OOOO
+    EOS
+    commands = [
+      "I 4 4",
+      "S",
+      "X"
+    ]
+
+    assert_match /#{expected}/, output_for_commands(commands)
+  end
+
 
   private
 
