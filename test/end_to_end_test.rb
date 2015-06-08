@@ -71,6 +71,25 @@ OOOO
   end
 
 
+  def test_repl_clear
+    expected = <<-EOS
+OOOO
+OOOO
+OOOO
+OOOO
+    EOS
+    commands = [
+      "I 4 4",
+      "L 2 3 A",
+      "C",
+      "S",
+      "X"
+    ]
+
+    assert_match /#{expected}/, output_for_commands(commands)
+  end
+
+
   private
 
   def bin_file
