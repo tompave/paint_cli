@@ -66,4 +66,19 @@ OOOO
     assert_equal expected.strip, @bmp.render
   end
 
+
+
+  def test_change_pixel_coords_must_be_in_range
+    @bmp = PaintCli::Bitmap.new(4, 4)
+    @bmp.change_pixel(1, 1, "C")
+
+    assert_raises(PaintCli::Bitmap::CoordinateError) do
+      @bmp.change_pixel(1, 5, "C")
+    end
+
+    assert_raises(PaintCli::Bitmap::CoordinateError) do
+      @bmp.change_pixel(0, 2, "C")
+    end
+  end
+
 end

@@ -21,7 +21,8 @@ module PaintCli
 
 
     def change_pixel(x, y, color)
-      matrix[x-1][y-1] = color
+      x_coord, y_coord = sanitize(x, y)
+      matrix[x_coord][y_coord] = color
     end
 
 
@@ -46,7 +47,18 @@ module PaintCli
     end
 
 
+    def sanitize(x, y)
+      if !(((1..width) === x) && ((1..height) === y))
+        raise CoordinateError, "coordinates x: #{x} and y: #{y} are out of frame (#{width}x#{height})"
+      end
+      [x - 1, y - 1]
+    end
+
+
     class SizeError < ::StandardError
+    end
+
+    class CoordinateError < ::StandardError
     end
 
   end
