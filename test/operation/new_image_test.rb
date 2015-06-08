@@ -9,7 +9,7 @@ class NewImageTest < Minitest::Test
   end
 
 
-  def test_process_returns_a_bitmap
+  def test_process_returns_a_bitmap_with_any_arg
     assert_instance_of PaintCli::Bitmap, @operation.process
     assert_instance_of PaintCli::Bitmap, @operation.process(nil)
     assert_instance_of PaintCli::Bitmap, @operation.process(PaintCli::Bitmap.new(1,1))
