@@ -7,18 +7,20 @@ class ColorPixelTest < Minitest::Test
     @bmp = PaintCli::Bitmap.new(5, 4)
     @args = [2, 3, "C"]
     @operation = PaintCli::Operation::ColorPixel.new(@args)
-    @out = @operation.process(@bmp)
   end
 
 
   def test_process_returns_a_different_bitmap
-    refute_equal @bmp.render, @out.render
+    old = @bmp.render
+    out = @operation.process(@bmp)
+    refute_equal old, out.render
   end
 
 
   def test_process_returns_a_bitmap_of_the_same_size
-    assert_equal @bmp.width, @out.width
-    assert_equal @bmp.height, @out.height
+    out = @operation.process(@bmp)
+    assert_equal @bmp.width, out.width
+    assert_equal @bmp.height, out.height
   end
 
 
@@ -30,6 +32,6 @@ OCOOO
 OOOOO
     EOS
 
-    assert_equal expected, @out.render
+    assert_equal expected.strip, @operation.process(@bmp).render
   end
 end
