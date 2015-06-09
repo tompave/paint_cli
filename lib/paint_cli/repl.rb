@@ -16,6 +16,7 @@ module PaintCli
 
     def enter_loop
       loop do
+        print "> "
         cmd = next_command
         if cmd == "X"
           break
