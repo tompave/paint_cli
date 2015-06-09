@@ -26,7 +26,9 @@ module PaintCli
       when "H" then Operation::HorizontalLine
       when "F" then Operation::Fill
       when "S" then Operation::Show
-      else Operation::Base
+      else
+        puts "Unrecognized command '#{cmd}'"
+        Operation::Base
       end
     end
 

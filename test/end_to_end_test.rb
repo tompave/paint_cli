@@ -90,6 +90,19 @@ OOOO
   end
 
 
+  def test_invalid_command
+    expected = "Unrecognized command 'W'"
+
+    commands = [
+      "I 4 4",
+      "W",
+      "X"
+    ]
+
+    assert_match /#{expected}/, output_for_commands(commands)
+  end
+
+
   private
 
   def bin_file
