@@ -1,4 +1,5 @@
 require "paint_cli/version"
+require "paint_cli/base_error"
 require "paint_cli/bitmap"
 require "paint_cli/parser"
 require "paint_cli/repl"

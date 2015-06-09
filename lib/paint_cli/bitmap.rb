@@ -76,10 +76,10 @@ module PaintCli
     end
 
 
-    class SizeError < ::StandardError
+    class SizeError < PaintCli::BaseError
     end
 
-    class CoordinateError < ::StandardError
+    class CoordinateError < PaintCli::BaseError
     end
 
   end

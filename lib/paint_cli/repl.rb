@@ -34,6 +34,8 @@ module PaintCli
     def run_command(cmd)
       operation = parser.parse(cmd)
       @bitmap = operation.process(@bitmap)
+    rescue PaintCli::BaseError => e
+      puts e.message
     end
 
   end

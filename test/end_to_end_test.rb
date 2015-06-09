@@ -103,6 +103,20 @@ OOOO
   end
 
 
+  def test_invalid_draw_coordiates
+    expected = "coordinates x: 5 and y: 3 are out of frame (4x4)"
+
+    commands = [
+      "I 4 4",
+      "H 2 10 3 C",
+      "S",
+      "X"
+    ]
+
+    assert_match /#{Regexp.escape(expected)}/, output_for_commands(commands)
+  end
+
+
   private
 
   def bin_file
